@@ -25,6 +25,11 @@ import tropa.Tropa;
 		  property = "idAnimal")
 public class Animal implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_animal")
