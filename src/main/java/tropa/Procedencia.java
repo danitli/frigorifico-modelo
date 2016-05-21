@@ -25,11 +25,11 @@ public class Procedencia {
 		this.descripcion = descripcion;
 	}
 
-	public int getId() {
+	public int getIdProcedencia() {
 		return idProcedencia;
 	}
 
-	public void setId(int idProcedencia) {
+	public void setIdProcedencia(int idProcedencia) {
 		this.idProcedencia = idProcedencia;
 	}
 	
