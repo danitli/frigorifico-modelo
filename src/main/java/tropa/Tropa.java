@@ -64,6 +64,10 @@ public class Tropa implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "especie_id_especie")
 	private Especie especie;
+	
+	@OneToOne
+	@JoinColumn(name = "procedencia_id_procedencia")
+	private Procedencia procedencia;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="tropa",  cascade = CascadeType.ALL)
 	private Set<TropaCorral> corrales;
@@ -157,6 +161,15 @@ public class Tropa implements Serializable {
 
 	public void setEspecie(Especie especie) {
 		this.especie = especie;
+	}
+	
+	
+	public Procedencia getProcedencia() {
+		return procedencia;
+	}
+
+	public void setProcedencia(Procedencia procedencia) {
+		this.procedencia = procedencia;
 	}
 
 	public Set<TropaCorral> getCorrales() {

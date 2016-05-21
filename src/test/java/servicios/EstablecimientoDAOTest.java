@@ -46,7 +46,7 @@ public class EstablecimientoDAOTest {
 		Aplicacion.closeEntityManagerFactoryForTest();
 	}
 
-	@Test
+	//@Test
 	public void salvarYobtenerEstablecimientoDAOTest() {
 		Establecimiento capiangos = new Establecimiento();
 		capiangos.setCodigoEstablecimiento("01.029.0.21924/00");
@@ -74,7 +74,7 @@ public class EstablecimientoDAOTest {
 		 */
 	}
 
-	@Test
+	//@Test
 	public void obtenerEstablecimientoInexistenteDAOTest() {
 		EstablecimientoDAO es = new EstablecimientoDAO();
 		Establecimiento e = es.obtenerEstablecimiento(120);

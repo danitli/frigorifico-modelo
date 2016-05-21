@@ -89,7 +89,7 @@ public class AnimalDAOTest {
 		Aplicacion.closeEntityManagerFactoryForTest();
 	}
 
-	@Test
+	//@Test
 	public void salvatYobtenerAnimalDAOTest() {
 		CategoriaDAO cs = new CategoriaDAO();
 		Categoria categoria = cs.obtenerCategoria(1);
