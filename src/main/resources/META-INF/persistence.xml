@@ -13,6 +13,12 @@
 		<class>especie.Ovino</class>
 		<class>especie.Porcino</class>
 		<class>especie.Vacuno</class>
+		<class>tropa.Corral</class>
+		<class>tropa.TropaCorral</class>
+		<class>tropa.EstadoCorral</class>
+		<class>tropa.Libre</class>
+		<class>tropa.Ocupado</class>
+		<class>tropa.FueraDeServicio</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"	value="jdbc:mysql://localhost:3306/frigorifico" />
 			<property name="javax.persistence.jdbc.user" value="root" />
@@ -22,5 +28,4 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 		</properties>
 	</persistence-unit>
-
 </persistence>

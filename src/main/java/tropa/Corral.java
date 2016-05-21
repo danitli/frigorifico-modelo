@@ -1,17 +1,41 @@
 package tropa;
 
-import java.util.GregorianCalendar;
+import java.io.Serializable;
 
-public class Corral {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="corral")
+public class Corral implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id_corral")
+	private int idCorral;
 	
 	private int numero;
 	private int capacidad;
-	private int ocupacion;
-	private GregorianCalendar fechaEgreso;
 	
-	public Corral(int numero, int capacidad) {
+	@OneToOne
+	@JoinColumn(name = "estado_id_estado")
+	private EstadoCorral estado;
+	
+	
+	public Corral(){
+		
+	}
+	
+	public Corral(int numero, int capacidad, EstadoCorral estadoCorral) {
 		this.setNumero(numero);
 		this.setCapacidad(capacidad);
+		this.setEstado(estadoCorral);
 	}
 	
 	public int getNumero() {
@@ -20,6 +44,7 @@ public class Corral {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
+	
 	public int getCapacidad() {
 		return capacidad;
 	}
@@ -27,22 +52,20 @@ public class Corral {
 		this.capacidad = capacidad;
 	}
 
-	public int getOcupacion() {
-		return ocupacion;
+	public EstadoCorral getEstado() {
+		return estado;
 	}
 
-	public void setOcupacion(int ocupacion) {
-		this.ocupacion = ocupacion;
+	public void setEstado(EstadoCorral estado) {
+		this.estado = estado;
 	}
 
-	public GregorianCalendar getFechaEgreso() {
-		return fechaEgreso;
+	public void cambiarLibreAOcupado() {
+		this.setEstado(new Ocupado());
+		
 	}
 
-	public void setFechaEgreso(GregorianCalendar fechaEgreso) {
-		this.fechaEgreso = fechaEgreso;
+	public boolean puedeGuardarAnimales() {
+		return this.getEstado().puedeGuardarAnimales();
 	}
-	
-	
-
 }
