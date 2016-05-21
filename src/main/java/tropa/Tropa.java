@@ -25,9 +25,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import especie.Especie;
 import establecimiento.Establecimiento;
-import tropa.Animal;
-import tropa.Corral;
-import tropa.DTe;
+
 @Entity
 @Table(name = "tropa")
 public class Tropa implements Serializable {

@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import org.apache.log4j.Logger;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import excepciones.TropaInexistenteException;
