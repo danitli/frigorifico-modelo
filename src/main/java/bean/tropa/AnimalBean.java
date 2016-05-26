@@ -1,9 +1,11 @@
 package bean.tropa;
 
+import com.google.gson.Gson;
 
 public class AnimalBean {
 
 	private int idAnimal;
+	private int garron;
 	private double peso;
 	private int idCategoria;
 	private int idTropa;
@@ -14,6 +16,13 @@ public class AnimalBean {
 	}
 	public void setIdAnimal(int idAnimal) {
 		this.idAnimal = idAnimal;
+	}
+	
+	public int getGarron() {
+		return garron;
+	}
+	public void setGarron(int garron) {
+		this.garron = garron;
 	}
 	public double getPeso() {
 		return peso;
@@ -38,5 +47,11 @@ public class AnimalBean {
 	}
 	public void setCabezaFaenadaEntera(boolean cabezaEntera) {
 		this.cabezaFaenadaEntera = cabezaEntera;
+	}
+	
+	@Override
+	public String toString(){
+		Gson gson = new Gson();
+		return gson.toJson(this);
 	}
 }
