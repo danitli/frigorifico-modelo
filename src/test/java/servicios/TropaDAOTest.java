@@ -17,6 +17,9 @@ import com.google.gson.Gson;
 
 import configuracion.Aplicacion;
 import especie.Especie;
+import especie.Ovino;
+import especie.Porcino;
+import especie.Vacuno;
 import establecimiento.Establecimiento;
 import tropa.Animal;
 import tropa.Procedencia;
@@ -65,6 +68,56 @@ public class TropaDAOTest {
 			establecimiento = capiangos;
 		}
 		
+		Procedencia procedencia1= new Procedencia();
+		Procedencia procedencia2= new Procedencia();
+		Procedencia procedencia3= new Procedencia();
+		procedencia1.setDescripcion("Estancias");
+		procedencia2.setDescripcion("Remate");
+		procedencia3.setDescripcion("Productores");
+		ProcedenciaDAO procedenciaDAO = new ProcedenciaDAO();
+		procedenciaDAO.salvar(procedencia1);
+		procedenciaDAO.salvar(procedencia2);
+		procedenciaDAO.salvar(procedencia3);
+		
+		Ovino ovino = new Ovino();
+		ovino.setDescripcion("Ovino");
+		Porcino porcino = new Porcino();
+		porcino.setDescripcion("Porcino");
+		Vacuno vacuno = new Vacuno();
+		vacuno.setDescripcion("Vacuno");
+		
+		EspecieDAO especieDAO = new EspecieDAO();
+		especieDAO.salvar(ovino);
+		especieDAO.salvar(porcino);
+		especieDAO.salvar(vacuno);
+		
+		TropaReservada tropaReservada1 = new TropaReservada();
+		tropaReservada1.setAnio(2016);
+		tropaReservada1.setDesde(1);
+		tropaReservada1.setHasta(1000);
+		tropaReservada1.setUltima_tropa(1);
+		tropaReservada1.setProcedencia(procedencia1);
+		
+		TropaReservada tropaReservada2 = new TropaReservada();
+		tropaReservada2.setAnio(2016);
+		tropaReservada2.setDesde(1001);
+		tropaReservada2.setHasta(2000);
+		tropaReservada2.setUltima_tropa(1001);
+		tropaReservada2.setProcedencia(procedencia2);
+		
+		TropaReservada tropaReservada3 = new TropaReservada();
+		tropaReservada3.setAnio(2016);
+		tropaReservada3.setDesde(2001);
+		tropaReservada3.setHasta(5000);
+		tropaReservada3.setUltima_tropa(2001);
+		tropaReservada3.setProcedencia(procedencia3);
+		
+		TropaReservadaDAO tropaReservadaDAO = new TropaReservadaDAO();
+		tropaReservadaDAO.salvar(tropaReservada1);
+		tropaReservadaDAO.salvar(tropaReservada2);
+		tropaReservadaDAO.salvar(tropaReservada3);
+		
+		
 	}
 
 	@AfterClass
@@ -73,7 +126,7 @@ public class TropaDAOTest {
 		Aplicacion.closeEntityManagerFactoryForTest();
 	}
 
-	//@Test
+	@Test
 	public void salvarYobtenerTropaDAOTest() {
 		ProcedenciaDAO procedenciaDAO = new ProcedenciaDAO();
 		Procedencia procedencia = procedenciaDAO.obtenerProcedencia(1);
@@ -96,8 +149,20 @@ public class TropaDAOTest {
 		trDAO.salvarTropa(tropa1);
 		Tropa tropaBBDD = trDAO.obtenerTropaPorNroTropa(tropa1.getNumeroTropa());
 
-		Assert.assertEquals("Los numeros de tropa NO COINCIDEN!!!!!!!", tropa1.getNumeroTropa(),
+		Assert.assertEquals("Los numeros de tropa de la tropa salvada con la recuperad NO COINCIDEN!", tropa1.getNumeroTropa(),
 				tropaBBDD.getNumeroTropa());
+		Assert.assertEquals("La cantidad de animales recibidos NO es igual a la tropa salvada con la recuperada", tropa1.getAnimalesRecibidos(), 
+				tropaBBDD.getAnimalesRecibidos());
+		Assert.assertEquals("La fecha de Ingreso NO es igual a la tropa salvada con la recuperada", tropa1.getFechaIngreso(), 
+				tropaBBDD.getFechaIngreso());
+		Assert.assertEquals("La fecha de Faena NO es igual a la tropa salvada con la recuperada", tropa1.getFechaFaena(), 
+				tropaBBDD.getFechaFaena());
+		Assert.assertEquals("La especie NO es igual a la tropa salvada con la recuperada", tropa1.getEspecie(), 
+				tropaBBDD.getEspecie());
+		
+		
+		Assert.assertEquals("La especie NO es igual a la tropa salvada con la recuperada", tropa1.getEspecie(), 
+				tropaBBDD.getEspecie());
 
 		/*
 		 * TODO: agregar los assert para las demas propiedades del objeto tropa1
