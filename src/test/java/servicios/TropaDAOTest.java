@@ -129,7 +129,7 @@ public class TropaDAOTest {
 		FueraDeServicio fueraDeServicioEstado = new FueraDeServicio();
 		Libre libreEstado = new Libre();
 		Ocupado ocupadoEstado = new Ocupado();
-		EstadoDAO estadoDAO = new EstadoDAO();
+		EstadoCorralDAO estadoDAO = new EstadoCorralDAO();
 		estadoDAO.salvar(libreEstado);
 		estadoDAO.salvar(fueraDeServicioEstado);
 		estadoDAO.salvar(ocupadoEstado);		
@@ -235,13 +235,6 @@ public class TropaDAOTest {
 		Assert.assertEquals("La especie NO es igual a la tropa salvada con la recuperada", tropa1.getEspecie(), 
 				tropaBBDD.getEspecie());
 		Assert.assertEquals("Los corrales asociados NO son iguales", tropa1.getCorrales(), tropaBBDD.getCorrales());
-
-		
-
-		/*
-		 * TODO: agregar los assert para las demas propiedades del objeto tropa1
-		 * y tropaBBDD
-		 */
 	}
 
 	//@Test
