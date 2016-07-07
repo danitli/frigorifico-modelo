@@ -14,7 +14,7 @@ public class Procedencia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_procedencia")
-	private int idProcedencia;
+	private long idProcedencia;
 	private String descripcion;
 	
 	public String getDescripcion() {
@@ -25,11 +25,11 @@ public class Procedencia {
 		this.descripcion = descripcion;
 	}
 
-	public int getIdProcedencia() {
+	public long getIdProcedencia() {
 		return idProcedencia;
 	}
 
-	public void setIdProcedencia(int idProcedencia) {
+	public void setIdProcedencia(long idProcedencia) {
 		this.idProcedencia = idProcedencia;
 	}
 	

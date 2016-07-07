@@ -10,7 +10,7 @@ import especie.Especie;
 
 public class EspecieDAO extends DAO {
 
-	public Especie obtenerEspecie(int id) {
+	public Especie obtenerEspecie(Long id) {
 		return (Especie) this.obtener(Especie.class, id);
 	}
 

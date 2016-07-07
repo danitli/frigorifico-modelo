@@ -4,17 +4,17 @@ import com.google.gson.Gson;
 
 public class AnimalBean {
 
-	private int idAnimal;
+	private Long idAnimal;
 	private int garron;
 	private double peso;
 	private int idCategoria;
 	private int idTropa;
 	private boolean cabezaFaenadaEntera;
 	
-	public int getIdAnimal() {
+	public Long getIdAnimal() {
 		return idAnimal;
 	}
-	public void setIdAnimal(int idAnimal) {
+	public void setIdAnimal(Long idAnimal) {
 		this.idAnimal = idAnimal;
 	}
 	

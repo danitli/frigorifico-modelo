@@ -34,7 +34,7 @@ public class Establecimiento implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_establecimiento")
 	@JsonProperty
-	private int idEstablecimiento;
+	private Long idEstablecimiento;
 	
 	@Column(name="codigo_establecimiento")
 	private String codigoEstablecimiento;

@@ -33,7 +33,7 @@ public class Animal implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_animal")
-	private int idAnimal;
+	private long idAnimal;
 	private int garron;
 	private double peso;
 	
@@ -64,11 +64,11 @@ public class Animal implements Serializable{
 		this.peso = peso;
 	}
 
-	public int getIdAnimal() {
+	public long getIdAnimal() {
 		return idAnimal;
 	}
 
-	public void setIdAnimal(int idAnimal) {
+	public void setIdAnimal(long idAnimal) {
 		this.idAnimal = idAnimal;
 	}
 

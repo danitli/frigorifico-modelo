@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 
 public class DTe {
 
-	private int numeroDte;
+	private long numeroDte;
 	private String origen;
 	private GregorianCalendar fechaCarga;
 	private GregorianCalendar fechaVencimiento;
@@ -15,11 +15,11 @@ public class DTe {
 		this.setAnimalesEnviados(animalesEnviados);
 	}
 
-	public int getNumeroDte() {
+	public long getNumeroDte() {
 		return numeroDte;
 	}
 
-	public void setNumeroDte(int numeroDte) {
+	public void setNumeroDte(long numeroDte) {
 		this.numeroDte = numeroDte;
 	}
 

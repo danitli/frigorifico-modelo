@@ -26,7 +26,7 @@ public class TropaDAO extends DAO{
 		this.salvar(tropa);
 	}
 	
-	public Tropa obtenerTropa(int id){
+	public Tropa obtenerTropa(Long id){
 		return (Tropa) this.obtener(Tropa.class, id);
 	}
 	

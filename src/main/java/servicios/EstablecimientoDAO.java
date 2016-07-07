@@ -28,7 +28,7 @@ public class EstablecimientoDAO extends DAO{
 		this.actualizar(establecimiento);
 	}
 
-	public Establecimiento obtenerEstablecimiento(int id){
+	public Establecimiento obtenerEstablecimiento(Long id){
 		return (Establecimiento)this.obtener(Establecimiento.class, id);
 	}
 }

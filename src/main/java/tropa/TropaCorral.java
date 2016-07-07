@@ -5,8 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -18,15 +18,13 @@ import excepciones.MayorCantidadAnimalesQueCapacidadCorralException;
 
 @Entity
 @Table(name="tropa_corral")
-@IdClass(TropaCorralId.class)
-
 public class TropaCorral implements Serializable{
 	
-	@Id	
-	private int tropa_id_tropa;
-	
 	@Id
-	private int corral_id_corral;
+    @GeneratedValue
+    @Column(name = "id_tropa_corral", nullable= false)
+    private long id_tropa_corral;
+    
 	
 	@Column
 	private int ocupacion;
@@ -35,11 +33,11 @@ public class TropaCorral implements Serializable{
 	private Date fechaEgreso;
 
 	@ManyToOne
-	@JoinColumn(name = "tropa_id_tropa", updatable = false, insertable = false, referencedColumnName= "id_tropa")
+	@JoinColumn(name = "tropa_id_tropa")
 	private Tropa tropa;
 	
 	@ManyToOne
-	@JoinColumn(name = "corral_id_corral", updatable = false, insertable = false)
+	@JoinColumn(name = "corral_id_corral")
 	private Corral corral;
 
 	public int getOcupacion() {
@@ -48,7 +46,7 @@ public class TropaCorral implements Serializable{
 
 	public void setOcupacion(int ocupacion)
 			throws MayorCantidadAnimalesQueCapacidadCorralException, CorralNoDisponibleParaGuardarAnimalesException {
-		if (ocupacion <= this.getCorral().getCapacidad()){
+		if (this.ocupacion <= this.getCorral().getCapacidad()){
 			if (this.getCorral().puedeGuardarAnimales()) {
 				this.ocupacion = ocupacion;
 				this.getCorral().cambiarLibreAOcupado();
@@ -60,7 +58,7 @@ public class TropaCorral implements Serializable{
 			throw new MayorCantidadAnimalesQueCapacidadCorralException();
 		}
 	}
-
+	
 	public Date getFechaEgreso() {
 		return fechaEgreso;
 	}
@@ -84,4 +82,9 @@ public class TropaCorral implements Serializable{
 	public void setCorral(Corral corral) {
 		this.corral = corral;
 	}
+	
+//	@Override
+//	public String toString(){
+//		return "Tropa: " + this.getTropa().getNumeroTropa() + " se esta guardando en el corral: " + this.getCorral() + ", con: " + this.getOcupacion() + " animales";
+//	}
 }

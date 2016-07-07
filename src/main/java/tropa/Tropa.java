@@ -38,7 +38,7 @@ public class Tropa implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_tropa", nullable= false)
-	private int idTropa;
+	private long idTropa;
 
 	@Column(name = "numero_tropa")
 	private int numeroTropa;
@@ -99,11 +99,11 @@ public class Tropa implements Serializable {
 	}
 	
 
-	public int getIdTropa() {
+	public long getIdTropa() {
 		return idTropa;
 	}
 
-	public void setIdTropa(int idTropa) {
+	public void setIdTropa(long idTropa) {
 		this.idTropa = idTropa;
 	}
 

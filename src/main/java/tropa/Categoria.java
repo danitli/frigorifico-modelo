@@ -15,16 +15,16 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_categoria")
-	private int idCategoria;
+	private long idCategoria;
 	
 	private String descripcion;
 	private String codigo;
 	private String abreviatura;
 	
-	public int getIdCategoria() {
+	public long getIdCategoria() {
 		return idCategoria;
 	}
-	public void setIdCategoria(int idCategoria) {
+	public void setIdCategoria(long idCategoria) {
 		this.idCategoria = idCategoria;
 	}
 	

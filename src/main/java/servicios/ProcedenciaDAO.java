@@ -10,7 +10,7 @@ import tropa.Procedencia;
 
 public class ProcedenciaDAO extends DAO {
 		
-	public Procedencia obtenerProcedencia(int id){
+	public Procedencia obtenerProcedencia(Long id){
 		return (Procedencia)this.obtener(Procedencia.class, id);
 	}
 	

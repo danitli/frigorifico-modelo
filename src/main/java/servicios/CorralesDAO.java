@@ -10,7 +10,7 @@ import tropa.Corral;
 
 public class CorralesDAO extends DAO{
 	
-	public Corral obtenerCorral(int id) {
+	public Corral obtenerCorral(Long id) {
 		return (Corral) this.obtener(Corral.class, id);
 	}
 

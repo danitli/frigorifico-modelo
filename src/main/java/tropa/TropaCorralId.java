@@ -5,12 +5,16 @@ import java.io.Serializable;
 
 public class TropaCorralId implements Serializable {
 
-	private int	tropa_id_tropa;
+	private Long tropa_id_tropa;
 
-	private int corral_id_corral;
+	private Long corral_id_corral;
 
+	@Override
 	public int hashCode() {
-		return (int) (tropa_id_tropa + corral_id_corral);
+		long dateToday = System.currentTimeMillis();
+		System.out.println(tropa_id_tropa);
+		System.out.println(corral_id_corral);
+		return (int) (tropa_id_tropa + corral_id_corral + dateToday);
 	}
 
 	public boolean equals(Object object) {

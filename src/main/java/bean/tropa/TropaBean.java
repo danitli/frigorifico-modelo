@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 
 public class TropaBean {
 
-	private int idTropa;
+	private Long idTropa;
 	private int numeroTropa;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss.SSS", locale="es-AR", timezone="America/Argentina/Buenos_Aires")
 	private Date fechaIngreso;
@@ -25,10 +25,10 @@ public class TropaBean {
 	private Set<Integer> corralesIds;
 	private int dteId;
 	
-	public int getIdTropa() {
+	public Long getIdTropa() {
 		return idTropa;
 	}
-	public void setIdTropa(int idTropa) {
+	public void setIdTropa(Long idTropa) {
 		this.idTropa = idTropa;
 	}
 	public int getNumeroTropa() {

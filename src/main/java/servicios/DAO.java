@@ -32,7 +32,7 @@ public class DAO {
 		}
 	}
 
-	public Object obtener(Class<?> entityClass, int primaryKey) {
+	public Object obtener(Class<?> entityClass, long primaryKey) {
 		Aplicacion ap = Aplicacion.getInstance();
 		EntityManager em = ap.getEntityManager();
 		Object anObject = (Object) em.find(entityClass, primaryKey);

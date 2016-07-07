@@ -44,7 +44,7 @@ public class AnimalDAOTest {
 		}
 		
 		EstablecimientoDAO es = new EstablecimientoDAO();
-		Establecimiento establecimiento = es.obtenerEstablecimiento(1);
+		Establecimiento establecimiento = es.obtenerEstablecimiento(new Long(1));
 		if (establecimiento == null) {
 			Establecimiento capiangos = new Establecimiento();
 			capiangos.setCodigoEstablecimiento("01.029.0.21924/00");
@@ -61,13 +61,13 @@ public class AnimalDAOTest {
 		}
 
 		ProcedenciaDAO procedenciaDAO = new ProcedenciaDAO();
-		Procedencia procedencia = procedenciaDAO.obtenerProcedencia(1);
+		Procedencia procedencia = procedenciaDAO.obtenerProcedencia(new Long(1));
 
 		TropaReservadaDAO treservadaDAO = new TropaReservadaDAO();
 		TropaReservada treservada = treservadaDAO.obtenerTropaReservadaPorProcedenciaYanioActual(procedencia);
 
 		EspecieDAO especieDAO = new EspecieDAO();
-		Especie especie = especieDAO.obtenerEspecie(2);
+		Especie especie = especieDAO.obtenerEspecie(new Long(2));
 
 		Tropa tropa1 = new Tropa();
 		tropa1.setEstablecimiento(establecimiento);
@@ -92,7 +92,7 @@ public class AnimalDAOTest {
 	//@Test
 	public void salvatYobtenerAnimalDAOTest() {
 		CategoriaDAO cs = new CategoriaDAO();
-		Categoria categoria = cs.obtenerCategoria(1);
+		Categoria categoria = cs.obtenerCategoria(new Long(1));
 
 		TropaDAO tropaDAO = new TropaDAO();
 

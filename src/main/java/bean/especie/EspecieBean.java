@@ -2,7 +2,7 @@ package bean.especie;
 
 public class EspecieBean {
 	
-	private int idEspecie;
+	private Long idEspecie;
 	private String descripcion;
 	private String codigo;
 	
@@ -10,7 +10,7 @@ public class EspecieBean {
 		
 	}
 	
-	public int getIdEspecie() {
+	public Long getIdEspecie() {
 		return idEspecie;
 	}
 	public String getDescripcion() {
@@ -20,7 +20,7 @@ public class EspecieBean {
 		return codigo;
 	}
 
-	public void setIdEspecie(int idEspecie) {
+	public void setIdEspecie(Long idEspecie) {
 		this.idEspecie = idEspecie;
 	}
 

@@ -41,17 +41,17 @@ public abstract class Especie implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_especie")
-	private int idEspecie;
+	private Long idEspecie;
 
 	@Column(name = "descripcion_especie")
 	private String descripcion;
 	private String codigo;
 
-	public int getIdEspecie() {
+	public Long getIdEspecie() {
 		return idEspecie;
 	}
 
-	public void setIdEspecie(int idEspecie) {
+	public void setIdEspecie(Long idEspecie) {
 		this.idEspecie = idEspecie;
 	}
 

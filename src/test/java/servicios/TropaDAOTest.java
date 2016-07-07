@@ -3,9 +3,12 @@ package servicios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
@@ -21,7 +24,13 @@ import especie.Ovino;
 import especie.Porcino;
 import especie.Vacuno;
 import establecimiento.Establecimiento;
+import excepciones.CorralNoDisponibleParaGuardarAnimalesException;
+import excepciones.MayorCantidadAnimalesQueCapacidadCorralException;
 import tropa.Animal;
+import tropa.Corral;
+import tropa.FueraDeServicio;
+import tropa.Libre;
+import tropa.Ocupado;
 import tropa.Procedencia;
 import tropa.Tropa;
 import tropa.TropaCorral;
@@ -51,7 +60,7 @@ public class TropaDAOTest {
 		}
 		
 		EstablecimientoDAO es = new EstablecimientoDAO();
-		establecimiento = es.obtenerEstablecimiento(1);
+		establecimiento = es.obtenerEstablecimiento(new Long(1));
 
 		if (establecimiento == null) {
 			Establecimiento capiangos = new Establecimiento();
@@ -116,7 +125,40 @@ public class TropaDAOTest {
 		tropaReservadaDAO.salvar(tropaReservada1);
 		tropaReservadaDAO.salvar(tropaReservada2);
 		tropaReservadaDAO.salvar(tropaReservada3);
+
+		FueraDeServicio fueraDeServicioEstado = new FueraDeServicio();
+		Libre libreEstado = new Libre();
+		Ocupado ocupadoEstado = new Ocupado();
+		EstadoDAO estadoDAO = new EstadoDAO();
+		estadoDAO.salvar(libreEstado);
+		estadoDAO.salvar(fueraDeServicioEstado);
+		estadoDAO.salvar(ocupadoEstado);		
 		
+		Corral corral1 = new Corral();
+		corral1.setCapacidad(40);
+		corral1.setNumero(1);
+		corral1.setEstado(libreEstado);
+		
+		Corral corral2 = new Corral();
+		corral2.setCapacidad(45);
+		corral2.setNumero(2);
+		corral2.setEstado(libreEstado);
+		
+		Corral corral3 = new Corral();
+		corral2.setCapacidad(30);
+		corral3.setNumero(3);
+		corral3.setEstado(libreEstado);
+		
+		Corral corral4 = new Corral();
+		corral2.setCapacidad(50);
+		corral4.setNumero(4);
+		corral4.setEstado(libreEstado);
+			
+		CorralesDAO corralesDAO = new CorralesDAO();
+		corralesDAO.salvar(corral1);
+		corralesDAO.salvar(corral2);
+		corralesDAO.salvar(corral3);
+		corralesDAO.salvar(corral4);
 		
 	}
 
@@ -129,26 +171,58 @@ public class TropaDAOTest {
 	@Test
 	public void salvarYobtenerTropaDAOTest() {
 		ProcedenciaDAO procedenciaDAO = new ProcedenciaDAO();
-		Procedencia procedencia = procedenciaDAO.obtenerProcedencia(1);
+		Procedencia procedencia = procedenciaDAO.obtenerProcedencia(new Long(1));
 
 		TropaReservadaDAO treservadaDAO = new TropaReservadaDAO();
 		TropaReservada treservada = treservadaDAO.obtenerTropaReservadaPorProcedenciaYanioActual(procedencia);
 
 		EspecieDAO especieDAO = new EspecieDAO();
-		Especie especie = especieDAO.obtenerEspecie(2);
+		Especie especie = especieDAO.obtenerEspecie(new Long(2));
 
 		Tropa tropa1 = new Tropa();
 		tropa1.setEstablecimiento(establecimiento);
-		tropa1.setAnimalesRecibidos(100);
+		tropa1.setAnimalesRecibidos(50);
 		tropa1.setNumeroTropa(treservada.obtenerSiguienteNroDeTropa());
 		tropa1.setFechaIngreso(new GregorianCalendar(2016, 01, 24, 8, 30, 00).getTime());
-		tropa1.setFechaFaena(new GregorianCalendar(2016, 01, 25, 15, 20, 10).getTime());
+		Date fechaFaena = new GregorianCalendar(2016, 01, 25, 15, 20, 10).getTime();
+		tropa1.setFechaFaena(fechaFaena);
 		tropa1.setEspecie(especie);
 
+		CorralesDAO corralesDAO = new CorralesDAO();
+		Corral corral1 = corralesDAO.obtenerCorral(new Long(1));
+		Corral corral2 = corralesDAO.obtenerCorral(new Long(2));
+		
+		TropaCorral tropaCorral1 = new TropaCorral();
+		tropaCorral1.setCorral(corral1);
+		try {
+			tropaCorral1.setOcupacion(40);
+		} catch (MayorCantidadAnimalesQueCapacidadCorralException | CorralNoDisponibleParaGuardarAnimalesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		TropaCorral tropaCorral2 = new TropaCorral();
+		tropaCorral2.setCorral(corral2);
+		try {
+			tropaCorral2.setOcupacion(10);
+		} catch (MayorCantidadAnimalesQueCapacidadCorralException | CorralNoDisponibleParaGuardarAnimalesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Set<TropaCorral> tropascorrales = new HashSet<TropaCorral>();
+		tropascorrales.add(tropaCorral1);
+		tropascorrales.add(tropaCorral2);
+		tropa1.setCorrales(tropascorrales);
+		
+		
 		TropaDAO trDAO = new TropaDAO();
 		trDAO.salvarTropa(tropa1);
+		
 		Tropa tropaBBDD = trDAO.obtenerTropaPorNroTropa(tropa1.getNumeroTropa());
 
+		Assert.assertEquals("El establecimiento en el que se esta guardando la tropa NO ES IGUAL", tropa1.getEstablecimiento(),
+				tropaBBDD.getEstablecimiento());
 		Assert.assertEquals("Los numeros de tropa de la tropa salvada con la recuperad NO COINCIDEN!", tropa1.getNumeroTropa(),
 				tropaBBDD.getNumeroTropa());
 		Assert.assertEquals("La cantidad de animales recibidos NO es igual a la tropa salvada con la recuperada", tropa1.getAnimalesRecibidos(), 
@@ -157,12 +231,12 @@ public class TropaDAOTest {
 				tropaBBDD.getFechaIngreso());
 		Assert.assertEquals("La fecha de Faena NO es igual a la tropa salvada con la recuperada", tropa1.getFechaFaena(), 
 				tropaBBDD.getFechaFaena());
+		Assert.assertEquals("La Procedencia NO es igual a la tropa salvada con la recuperada", tropa1.getProcedencia(), tropaBBDD.getProcedencia());
 		Assert.assertEquals("La especie NO es igual a la tropa salvada con la recuperada", tropa1.getEspecie(), 
 				tropaBBDD.getEspecie());
+		Assert.assertEquals("Los corrales asociados NO son iguales", tropa1.getCorrales(), tropaBBDD.getCorrales());
+
 		
-		
-		Assert.assertEquals("La especie NO es igual a la tropa salvada con la recuperada", tropa1.getEspecie(), 
-				tropaBBDD.getEspecie());
 
 		/*
 		 * TODO: agregar los assert para las demas propiedades del objeto tropa1
@@ -228,7 +302,7 @@ public class TropaDAOTest {
 	public void obtenerTropa(){
 		TropaDAO tropaDAO =  new TropaDAO();
 		
-		Tropa tropa = tropaDAO.obtenerTropa(60);
+		Tropa tropa = tropaDAO.obtenerTropa(new Long(60));
 		
 		Gson gson = new Gson();
 //		System.out.println(gson.toJson(tropa));

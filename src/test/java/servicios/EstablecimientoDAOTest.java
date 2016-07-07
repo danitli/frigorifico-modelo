@@ -61,7 +61,7 @@ public class EstablecimientoDAOTest {
 
 		EstablecimientoDAO etablecimeintoDAO = new EstablecimientoDAO();
 		etablecimeintoDAO.salvarEstablecimiento(capiangos);
-		Establecimiento establecimientoDesdeLaBBDD = etablecimeintoDAO.obtenerEstablecimiento(1);
+		Establecimiento establecimientoDesdeLaBBDD = etablecimeintoDAO.obtenerEstablecimiento(new Long(1));
 
 		Assert.assertTrue(establecimientoDesdeLaBBDD.getNombre().equals(capiangos.getNombre()));
 	}
@@ -69,7 +69,7 @@ public class EstablecimientoDAOTest {
 	@Test
 	public void obtenerEstablecimientoInexistenteDAOTest() {
 		EstablecimientoDAO establecimientoDAO = new EstablecimientoDAO();
-		Establecimiento establecimiento = establecimientoDAO.obtenerEstablecimiento(120);
+		Establecimiento establecimiento = establecimientoDAO.obtenerEstablecimiento(new Long(120));
 		Assert.assertNull("El establecimiento que estas pidiendo existe, por eso no es null y el test falla", establecimiento);
 	}
 
@@ -88,7 +88,7 @@ public class EstablecimientoDAOTest {
 
 		EstablecimientoDAO establecimientoDAO = new EstablecimientoDAO();
 		establecimientoDAO.salvarEstablecimiento(capiangos);
-		Establecimiento establecimientoDesdeLaBBDD = establecimientoDAO.obtenerEstablecimiento(2);
+		Establecimiento establecimientoDesdeLaBBDD = establecimientoDAO.obtenerEstablecimiento(new Long(2));
 		
 		establecimientoDesdeLaBBDD.setCodigoEstablecimiento("01.030.0.11111/00");
 		establecimientoDesdeLaBBDD.setCuit(23291625169L);
@@ -102,7 +102,7 @@ public class EstablecimientoDAOTest {
 		
 		establecimientoDAO.actualizarEstablecimiento(establecimientoDesdeLaBBDD);
 		
-		Establecimiento establecimientoCambiado = establecimientoDAO.obtenerEstablecimiento(2);
+		Establecimiento establecimientoCambiado = establecimientoDAO.obtenerEstablecimiento(new Long(2));
 		Assert.assertEquals("El cambio de codigo de Establecimiento no fue actualizado en la bbdd", establecimientoCambiado.getCodigoEstablecimiento(), "01.030.0.11111/00");
 		Assert.assertEquals("El cambio de cuit del establecimiento no fue actualizado en la bbdd", establecimientoCambiado.getCuit(), 23291625169L);
 		Assert.assertEquals("El cambio de nombre del establecimiento no fue actualizado en la bbdd", establecimientoCambiado.getNombre(), "Cora S.R.L.");

@@ -2,6 +2,7 @@ package tropa;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Table(name="corral")
 public class Corral implements Serializable{
@@ -18,12 +21,12 @@ public class Corral implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_corral")
-	private int idCorral;
+	private long idCorral;
 	
 	private int numero;
 	private int capacidad;
 	
-	@OneToOne
+	@OneToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "estado_id_estado")
 	private EstadoCorral estado;
 	
@@ -38,6 +41,15 @@ public class Corral implements Serializable{
 		this.setEstado(estadoCorral);
 	}
 	
+		
+	public long getIdCorral() {
+		return idCorral;
+	}
+
+	public void setIdCorral(long idCorral) {
+		this.idCorral = idCorral;
+	}
+
 	public int getNumero() {
 		return numero;
 	}

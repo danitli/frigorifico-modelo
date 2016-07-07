@@ -3,7 +3,7 @@ package bean.procedencia;
 public class ProcedenciaBean {
 
 	
-	private int idProcedencia;
+	private Long idProcedencia;
 	private String descripcion;
 	
 	
@@ -12,12 +12,12 @@ public class ProcedenciaBean {
 	}
 
 
-	public int getIdProcedencia() {
+	public Long getIdProcedencia() {
 		return idProcedencia;
 	}
 
 
-	public void setIdProcedencia(int idProcedencia) {
+	public void setIdProcedencia(Long idProcedencia) {
 		this.idProcedencia = idProcedencia;
 	}
 

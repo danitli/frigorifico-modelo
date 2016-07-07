@@ -30,7 +30,7 @@ public abstract class EstadoCorral implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_estado")
-	private int idEstado;
+	private long idEstado;
 
 	public boolean puedeGuardarAnimales() {
 		return false;

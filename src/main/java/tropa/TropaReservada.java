@@ -18,7 +18,7 @@ public class TropaReservada {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id_tropa_reservada")
-	private int idTropaReservada;
+	private long idTropaReservada;
 	
 	@Column(name="ultima_tropa")
 	private int ultimaTropa;
@@ -32,6 +32,13 @@ public class TropaReservada {
 	private Procedencia procedencia;
 	
 	public TropaReservada(){
+	}
+	
+	public long getIdTropaReservada() {
+		return idTropaReservada;
+	}
+	public void setIdTropaReservada(long idTropaReservada) {
+		this.idTropaReservada = idTropaReservada;
 	}
 
 	public int getDesde() {
