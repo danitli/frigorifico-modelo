@@ -13,9 +13,8 @@ public class TropaBean {
 	private int numeroTropa;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss.SSS", locale="es-AR", timezone="America/Argentina/Buenos_Aires")
 	private Date fechaIngreso;
-//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss.SSS", locale="es-AR", timezone="America/Argentina/Buenos_Aires")
-//	private Date fechaFaena;
-//  TODO: se toma del sistema asi que borrar eestos comentarios
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss.SSS", locale="es-AR", timezone="America/Argentina/Buenos_Aires")
+	private Date fechaFaena;
 	
 	private int procendeciaId;
 	private int animalesRecibidos;
@@ -42,6 +41,13 @@ public class TropaBean {
 	}
 	public void setFechaIngreso(Date fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
+	}
+	
+	public Date getFechaFaena() {
+		return fechaFaena;
+	}
+	public void setFechaFaena(Date fechaFaena) {
+		this.fechaFaena = fechaFaena;
 	}
 	public int getProcendeciaId() {
 		return procendeciaId;
