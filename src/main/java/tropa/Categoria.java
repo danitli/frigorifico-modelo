@@ -1,16 +1,20 @@
 package tropa;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import especie.Especie;
 
 @Entity
 @Table(name="categoria")
 public class Categoria {
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +24,10 @@ public class Categoria {
 	private String descripcion;
 	private String codigo;
 	private String abreviatura;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "especie_id_especie")
+	private Especie especie;
 	
 	public int getIdCategoria() {
 		return idCategoria;
@@ -47,6 +55,13 @@ public class Categoria {
 	}
 	public void setAbreviatura(String abreviatura) {
 		this.abreviatura = abreviatura;
+	}
+	
+	public Especie getEspecie() {
+		return especie;
+	}
+	public void setEspecie(Especie especie) {
+		this.especie = especie;
 	}
 	
 	@Override
