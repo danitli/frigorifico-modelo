@@ -36,9 +36,12 @@ public class TropaDAO extends DAO{
 		
 		Query query = em.createQuery("SELECT t FROM Tropa t WHERE t.numeroTropa = :nroTropa")
 				.setParameter("nroTropa", nroTropa);
-	
-		Tropa tropa = (Tropa) query.getResultList().get(0);
-		return tropa;
+		
+		if (!query.getResultList().isEmpty()){
+			Tropa tropa = (Tropa) query.getResultList().get(0);
+			return tropa;
+		}
+		return null;
 	}
 	
 	public int obtenerUltimoGarronDeUnDiaDeterminado(GregorianCalendar fecha){
