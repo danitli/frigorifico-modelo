@@ -37,7 +37,15 @@ public class TropaDAO extends DAO{
 		Query query = em.createQuery("SELECT t FROM Tropa t WHERE t.numeroTropa = :nroTropa AND year(fechaFaena)= year(curdate())  AND t.procedencia.idProcedencia = :idProcedencia")
 				.setParameter("nroTropa", nroTropa)
 				.setParameter("idProcedencia", idProcedencia);
-		
+		select * 
+		from tropa inner join procedencia on tropa.procedencia_id_procedencia = procedencia.id_procedencia
+		inner join tropa_reservada on tropa_reservada.procedencia_id_procedencia = procedencia.id_procedencia
+		where tropa.numero_tropa=200 and 
+				year(tropa.fecha_faena)= year(curdate()) and 
+		        year(curdate())=tropa_reservada.anio and 
+		        tropa.procedencia_id_procedencia = 1 and
+		        (200 between tropa_reservada.desde and tropa_reservada.hasta)
+		        
 		if (!query.getResultList().isEmpty()){
 			Tropa tropa = (Tropa) query.getResultList().get(0);
 			return tropa;
