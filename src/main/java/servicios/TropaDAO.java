@@ -30,12 +30,13 @@ public class TropaDAO extends DAO{
 		return (Tropa) this.obtener(Tropa.class, id);
 	}
 	
-	public Tropa obtenerTropaPorNroTropa(int nroTropa){
+	public Tropa obtenerTropaPorNroTropa(int nroTropa, int idProcedencia){
 		Aplicacion ap = Aplicacion.getInstance();
 		EntityManager em = ap.getEntityManager();
 		
-		Query query = em.createQuery("SELECT t FROM Tropa t WHERE t.numeroTropa = :nroTropa")
-				.setParameter("nroTropa", nroTropa);
+		Query query = em.createQuery("SELECT t FROM Tropa t WHERE t.numeroTropa = :nroTropa AND year(fechaFaena)= year(curdate())  AND t.procedencia.idProcedencia = :idProcedencia")
+				.setParameter("nroTropa", nroTropa)
+				.setParameter("idProcedencia", idProcedencia);
 		
 		if (!query.getResultList().isEmpty()){
 			Tropa tropa = (Tropa) query.getResultList().get(0);

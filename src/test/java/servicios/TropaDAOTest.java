@@ -139,6 +139,7 @@ public class TropaDAOTest {
 
 		Tropa tropa1 = new Tropa();
 		tropa1.setEstablecimiento(establecimiento);
+		tropa1.setProcedencia(procedencia);
 		tropa1.setAnimalesRecibidos(100);
 		tropa1.setNumeroTropa(treservada.obtenerSiguienteNroDeTropa());
 		tropa1.setFechaIngreso(new GregorianCalendar(2016, 01, 24, 8, 30, 00).getTime());
@@ -147,7 +148,7 @@ public class TropaDAOTest {
 
 		TropaDAO trDAO = new TropaDAO();
 		trDAO.salvarTropa(tropa1);
-		Tropa tropaBBDD = trDAO.obtenerTropaPorNroTropa(tropa1.getNumeroTropa());
+		Tropa tropaBBDD = trDAO.obtenerTropaPorNroTropa(tropa1.getNumeroTropa(), tropa1.getProcedencia().getIdProcedencia());
 
 		Assert.assertEquals("Los numeros de tropa de la tropa salvada con la recuperad NO COINCIDEN!", tropa1.getNumeroTropa(),
 				tropaBBDD.getNumeroTropa());

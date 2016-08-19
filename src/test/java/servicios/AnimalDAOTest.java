@@ -71,6 +71,7 @@ public class AnimalDAOTest {
 
 		Tropa tropa1 = new Tropa();
 		tropa1.setEstablecimiento(establecimiento);
+		tropa1.setProcedencia(procedencia);
 		tropa1.setAnimalesRecibidos(75);
 		tropa1.setNumeroTropa(treservada.obtenerSiguienteNroDeTropa());
 		tropa1.setFechaIngreso(new GregorianCalendar().getTime());
@@ -80,7 +81,7 @@ public class AnimalDAOTest {
 		TropaDAO trDAO = new TropaDAO();
 		trDAO.salvarTropa(tropa1);
 
-		tropa = trDAO.obtenerTropaPorNroTropa(tropa1.getNumeroTropa());
+		tropa = trDAO.obtenerTropaPorNroTropa(tropa1.getNumeroTropa(), tropa1.getProcedencia().getIdProcedencia());
 	}
 	
 	@AfterClass
