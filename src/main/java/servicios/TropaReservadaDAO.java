@@ -3,6 +3,7 @@ package servicios;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -34,5 +35,21 @@ public class TropaReservadaDAO extends DAO {
 			tropaReservadaResultado = tropas.get(0);
 		}
 		return tropaReservadaResultado;
+	}
+	
+	public boolean verificarTropaEnTropaReservada(int numeroTropa, int idProcedencia){
+		Aplicacion ap = Aplicacion.getInstance();
+		EntityManager em = ap.getEntityManager();
+		
+		Query query = em.createQuery("SELECT tr FROM TropaReservada tr "
+				+ "WHERE tr.anio= year(curdate()) AND "
+				+ "tr.procedencia.idProcedencia = :idProcedencia")
+				.setParameter("idProcedencia", idProcedencia);
+		if (!query.getResultList().isEmpty()){
+			TropaReservada tropaReservada = (TropaReservada) query.getResultList().get(0);
+			return tropaReservada.getDesde() <= numeroTropa && numeroTropa <= tropaReservada.getHasta();
+			
+		}
+		return false;
 	}
 }
