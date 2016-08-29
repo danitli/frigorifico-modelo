@@ -34,6 +34,7 @@ public class TropaReservadaDAO extends DAO {
 		} else {
 			tropaReservadaResultado = tropas.get(0);
 		}
+		
 		return tropaReservadaResultado;
 	}
 	
