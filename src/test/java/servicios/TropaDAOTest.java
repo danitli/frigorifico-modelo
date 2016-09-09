@@ -95,21 +95,21 @@ public class TropaDAOTest {
 		tropaReservada1.setAnio(2016);
 		tropaReservada1.setDesde(1);
 		tropaReservada1.setHasta(1000);
-		tropaReservada1.setUltima_tropa(1);
+		tropaReservada1.setUltimaTropa(1);
 		tropaReservada1.setProcedencia(procedencia1);
 		
 		TropaReservada tropaReservada2 = new TropaReservada();
 		tropaReservada2.setAnio(2016);
 		tropaReservada2.setDesde(1001);
 		tropaReservada2.setHasta(2000);
-		tropaReservada2.setUltima_tropa(1001);
+		tropaReservada2.setUltimaTropa(1001);
 		tropaReservada2.setProcedencia(procedencia2);
 		
 		TropaReservada tropaReservada3 = new TropaReservada();
 		tropaReservada3.setAnio(2016);
 		tropaReservada3.setDesde(2001);
 		tropaReservada3.setHasta(5000);
-		tropaReservada3.setUltima_tropa(2001);
+		tropaReservada3.setUltimaTropa(2001);
 		tropaReservada3.setProcedencia(procedencia3);
 		
 		TropaReservadaDAO tropaReservadaDAO = new TropaReservadaDAO();

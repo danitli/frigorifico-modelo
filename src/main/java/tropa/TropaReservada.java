@@ -54,7 +54,7 @@ public class TropaReservada {
 		return ultimaTropa;
 	}
 
-	public void setUltima_tropa(int ultimaTropa) {
+	public void setUltimaTropa(int ultimaTropa) {
 		this.ultimaTropa = ultimaTropa;
 	}
 
@@ -77,7 +77,7 @@ public class TropaReservada {
 	public int obtenerSiguienteNroDeTropa() {
 		int siguienteNroDeTropa = this.getUltimaTropa() + 1;
 		if (siguienteNroDeTropa <=  this.getHasta()){
-			this.setUltima_tropa(siguienteNroDeTropa);
+			this.setUltimaTropa(siguienteNroDeTropa);
 		} else {
 			//TODO: Levantar un exception!!! Se quedo sin tropas reservadas para esa procedencia
 		}

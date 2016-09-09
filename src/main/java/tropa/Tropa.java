@@ -57,7 +57,7 @@ public class Tropa implements Serializable {
 	@OneToMany(mappedBy = "tropa")
 	private List<Animal> animales;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST )
 	@JoinColumn(name = "establecimiento_id_establecimiento")
 	private Establecimiento establecimiento;
 

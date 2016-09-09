@@ -93,6 +93,10 @@ public class TropaBean {
 		this.dteId = dteId;
 	}
 	
+	public void agregarAnimal(Integer idAnimal){
+		this.getAnimales().add(idAnimal);
+	}
+	
 	@Override
 	public String toString(){
 		Gson gson = new Gson();
